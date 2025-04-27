@@ -5,4 +5,13 @@ const getOrders = async (req, res) => {
   res.status(200).json(orders);
 };
 
-export default { getOrders };
+const deleteOrder = async (req, res) => {
+  const receiptId = req.params.receipt_id;
+  await orderHandler.deleteOrder(receiptId);
+  res.status(204).json({ ok: true });
+};
+
+export default {
+  getOrders,
+  deleteOrder,
+};

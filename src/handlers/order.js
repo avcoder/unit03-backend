@@ -6,9 +6,8 @@ const getAllOrders = async () => {
 };
 
 // Get one
-const getOrderById = async (req, res) => {
-  const data = await Order.find({ receipt_no: req.params.id });
-  res.json(data);
+const getOrderByReceiptId = async (receiptId) => {
+  return await Order.findOne({ receipt_no: receiptId });
 };
 
 // Create one
@@ -18,9 +17,8 @@ const createOrder = async (req, res) => {
 };
 
 // Delete one
-const deleteOrder = async (req, res) => {
-  const deleted = { id: req.params.id };
-  res.json({ deleted });
+const deleteOrder = async (receiptId) => {
+  return await Order.deleteOne({ receipt_id: receiptId });
 };
 
 // Update one
@@ -31,7 +29,7 @@ const updateOrder = async (req, res) => {
 
 export default {
   getAllOrders,
-  getOrderById,
+  getOrderByReceiptId,
   createOrder,
   deleteOrder,
   updateOrder,

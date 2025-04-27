@@ -7,7 +7,7 @@ export const router = Router();
 
 // Order
 router.get("/order", orderController.getOrders);
-// router.delete("/order/:id", orderController.deleteOrder);
+router.delete("/order/:receipt_id", orderController.deleteOrder);
 // router.get("/order/:receipt_id", orderController.getOrderByReceiptId);
 // router.post("/order", orderController.createOrder);
 // router.put("/order/:id", orderController.updateOrder);
