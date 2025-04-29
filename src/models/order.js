@@ -5,9 +5,14 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: [true, "name is required"],
   },
-  order: [String],
+  order: {
+    type: [String],
+    required: [true, "order is required"],
+    default: [],
+  },
   isReady: {
     type: Boolean,
+    required: true,
     default: false,
   },
   receiptId: String,

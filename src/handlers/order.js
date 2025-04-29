@@ -1,5 +1,7 @@
 import Order from "../models/order.js";
 
+let receiptNo = 1;
+
 // Get all
 const getAllOrders = async () => {
   return await Order.find().lean();
@@ -7,13 +9,13 @@ const getAllOrders = async () => {
 
 // Get one
 const getOrderByReceiptId = async (receiptId) => {
-  return await Order.findOne({ receipt_no: receiptId });
+  return await Order.findOne({ receiptId: receiptId });
 };
 
 // Create one
-const createOrder = async (req, res) => {
-  const order = req.body;
-  res.json({ order });
+const createOrder = async ({ name, order }) => {
+  receiptNo += 1;
+  return await Order.create({ name, order, receiptId: receiptNo.toString() });
 };
 
 // Delete one
