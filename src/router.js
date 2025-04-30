@@ -11,7 +11,7 @@ router.get("/order", orderController.getOrders);
 router.delete("/order/:receipt_id", orderController.deleteOrder);
 router.post("/order", orderController.createOrder);
 router.get("/order/:receipt_id", orderController.getOrderByReceiptId);
-// router.put("/order/:id", orderController.updateOrder);
+router.put("/order/:receipt_id", orderController.updateOrder);
 
 // Search
 // router.get("/search", searchController.search);

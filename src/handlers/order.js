@@ -24,9 +24,12 @@ const deleteOrder = async (receiptId) => {
 };
 
 // Update one
-const updateOrder = async (req, res) => {
-  // const updated =
-  res.json(req.body);
+const updateOrder = async ({ id, order, name, isReady }) => {
+  return await Order.findOneAndUpdate(
+    { receiptId: id },
+    { order, name, isReady },
+    { new: true }
+  );
 };
 
 export default {

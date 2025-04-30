@@ -23,9 +23,18 @@ const createOrder = async (req, res) => {
   res.status(201).json({ ok: true });
 };
 
+const updateOrder = async (req, res) => {
+  const id = req.params.receipt_id;
+  const { order, name, isReady } = req.body;
+  console.log("in updateOrder: ", id, order, name, isReady);
+  await orderHandler.updateOrder({ id, order, name, isReady });
+  res.status(200).json({ data: order });
+};
+
 export default {
   getOrders,
   getOrderByReceiptId,
   deleteOrder,
   createOrder,
+  updateOrder,
 };
