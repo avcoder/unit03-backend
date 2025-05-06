@@ -1,6 +1,8 @@
 import orderHandler from "../handlers/order.js";
+import { validationResult } from "express-validator";
 
 const getOrders = async (req, res) => {
+  console.log("req.order is ...", req.order);
   const orders = await orderHandler.getAllOrders();
   res.status(200).json(orders);
 };
@@ -18,6 +20,13 @@ const deleteOrder = async (req, res) => {
 };
 
 const createOrder = async (req, res) => {
+  console.log("in createOrder");
+  const errors = validationResult(req);
+  console.log("errors: ", errors);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { name, order } = req.body;
   await orderHandler.createOrder({ name, order });
   res.status(201).json({ ok: true });
