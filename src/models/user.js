@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import plm from "passport-local-mongoose";
 
 const userSchema = mongoose.Schema({
   username: {
@@ -6,10 +7,8 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
-  password: {
-    type: String,
-    required: true, // hashed password
-  },
 });
+
+userSchema.plugin(plm);
 
 export default mongoose.model("user", userSchema);

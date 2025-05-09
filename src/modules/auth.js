@@ -7,6 +7,7 @@ export const createJWT = ({ id, username }) => {
 };
 
 export const protect = (req, res, next) => {
+  console.log("in protect");
   const bearer = req.headers.authorization;
 
   if (!bearer) {
@@ -14,7 +15,7 @@ export const protect = (req, res, next) => {
     res.json({ message: "not authorized" });
   }
 
-  const [, token] = bearer.split(" ");
+  const [, token] = bearer?.split(" ");
 
   if (!token) {
     res.status(401);
@@ -22,10 +23,10 @@ export const protect = (req, res, next) => {
   }
 
   try {
+    console.log("in try");
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     req.user = payload;
-    console.log(payload);
-    next();
+    console.log("payload: ", payload);
   } catch (e) {
     // console.error(e);
     res.status(401);
