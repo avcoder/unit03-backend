@@ -2,7 +2,6 @@ import { Router } from "express";
 import orderController from "./controllers/orderController.js";
 import userController from "./controllers/userController.js";
 import { body } from "express-validator";
-import { protect } from "./modules/auth.js";
 // import searchController from "./controllers/searchController.js";
 
 // import { searchOrder } from "./handlers/search.js";
